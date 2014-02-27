@@ -1,4 +1,8 @@
 # TZ::Formater
+[![Build Status](https://travis-ci.org/tonkonogov/TZ-formater.png?branch=master)](https://travis-ci.org/tonkonogov/TZ-formater)
+[![Coverage Status](https://coveralls.io/repos/tonkonogov/TZ-formater/badge.png)](https://coveralls.io/r/tonkonogov/TZ-formater)
+[![Code Climate](https://codeclimate.com/github/tonkonogov/TZ-formater.png)](https://codeclimate.com/github/tonkonogov/TZ-formater)
+[![Dependency Status](https://gemnasium.com/tonkonogov/TZ-formater.png)](https://gemnasium.com/tonkonogov/TZ-formater)
 
 Ruby gem for timezone format converting
 
