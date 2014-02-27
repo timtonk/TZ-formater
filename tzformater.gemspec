@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'TZFormater/tzformater/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "TZ-formater"
-  spec.version       = TZ::Formater::VERSION
+  spec.name          = 'tzformater'
+  spec.version       = TZFormater::VERSION
   spec.authors       = ["Dmitry Tonkonogov"]
   spec.email         = ["omun.spambox@gmail.com"]
   spec.summary       = %q{Library for converting timezone to different formats (POSIX, Olson, windows-like, windows-registry)}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.description   = %q{Just first gem.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
