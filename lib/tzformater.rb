@@ -1,5 +1,5 @@
 require "TZFormater/version"
 
 module TZFormater
-  # Your code goes here...
+  # FILENAME = File
 end
