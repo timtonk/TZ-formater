@@ -1,8 +1,9 @@
 require 'pstore'
+require 'json'
 
 module PstoreHelper
   FILENAME = File.expand_path('../test_data/test.pstore', File.dirname(__FILE__))
-  STUB_FILE = File.expand_path('../test_data/pstore_stub.yml', File.dirname(__FILE__))
+  STUB_FILE = File.expand_path('../test_data/pstore_stub.json', File.dirname(__FILE__))
 
   def generate_test_file
     delete_test_file
@@ -23,6 +24,6 @@ module PstoreHelper
     end
 
     def stub_data
-      Psych.load_file(STUB_FILE)
+      JSON.load(File.read(STUB_FILE))
     end
 end
