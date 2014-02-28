@@ -1,3 +1,3 @@
 module TZFormater
-  VERSION = "0.0.3-dev"
+  VERSION = "0.1.1"
 end
