@@ -1,8 +1,18 @@
 require 'spec_helper'
 
 describe TZFormater::PosixTZ do
+  let(:tz) { 'VLAT-11' }
+
+  context 'PosixTZ.all' do
+    subject { TZFormater::PosixTZ }
+
+    it 'contains one of timezone' do
+      expect(subject.all).to include(tz)
+    end
+  end
+
+
   context 'with one-to-one mapped timezone' do
-    let(:tz) { 'VLAT-11' }
     subject { TZFormater::PosixTZ.new(tz) }
 
     it 'returns olson-like string' do
