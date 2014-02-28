@@ -5,16 +5,16 @@ module PstoreHelper
   STUB_FILE = File.expand_path('../test_data/pstore_stub.yml', File.dirname(__FILE__))
 
   def generate_test_file
-    prepare_file(FILENAME)
+    delete_test_file
     generate_file(FILENAME, stub_data)
     FILENAME
   end
 
-  private
-    def prepare_file(filename)
-      File.delete(filename) if File.exist? filename
-    end
+  def delete_test_file
+    File.delete(FILENAME) if File.exist? FILENAME
+  end
 
+  private
     def generate_file(filename, data)
       file = PStore.new(filename)
       file.transaction do
