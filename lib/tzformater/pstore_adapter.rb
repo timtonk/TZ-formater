@@ -5,7 +5,7 @@ module TZFormater
     READ_ONLY = true
 
     def initialize(filename)
-      raise PStore::Error.new("Cannot find such file -- " << filename) unless File.exists?(filename)
+      raise PStore::Error.new("Cannot find such file -- " << filename) unless File.exist?(filename)
       @file = PStore.new(filename)
     end
 

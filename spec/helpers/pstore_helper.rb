@@ -12,7 +12,7 @@ module PstoreHelper
 
   private
     def prepare_file(filename)
-      File.delete(filename) if File.exists? filename
+      File.delete(filename) if File.exist? filename
     end
 
     def generate_file(filename, data)
