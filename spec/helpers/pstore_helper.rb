@@ -1,20 +1,21 @@
 require 'pstore'
+require 'json'
 
 module PstoreHelper
   FILENAME = File.expand_path('../test_data/test.pstore', File.dirname(__FILE__))
-  STUB_FILE = File.expand_path('../test_data/pstore_stub.yml', File.dirname(__FILE__))
+  STUB_FILE = File.expand_path('../test_data/pstore_stub.json', File.dirname(__FILE__))
 
   def generate_test_file
-    prepare_file(FILENAME)
+    delete_test_file
     generate_file(FILENAME, stub_data)
     FILENAME
   end
 
-  private
-    def prepare_file(filename)
-      File.delete(filename) if File.exists? filename
-    end
+  def delete_test_file
+    File.delete(FILENAME) if File.exist? FILENAME
+  end
 
+  private
     def generate_file(filename, data)
       file = PStore.new(filename)
       file.transaction do
@@ -23,6 +24,6 @@ module PstoreHelper
     end
 
     def stub_data
-      Psych.load_file(STUB_FILE)
+      JSON.load(File.read(STUB_FILE))
     end
 end

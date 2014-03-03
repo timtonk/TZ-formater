@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe TZFormater::PstoreAdapter, depends: :PstoreHelper do
   let(:pstore_adapter) { TZFormater::PstoreAdapter.new(filename) }
+  after(:all) { delete_test_file }
 
   context 'when incorrect file provided' do
     let!(:filename) { 'azaza' }
