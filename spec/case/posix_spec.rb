@@ -12,7 +12,7 @@ describe TZFormater::PosixTZ do
       let(:tz) { 'VLAT-11' }
 
       it 'contains one of timezone' do
-        expect(subject.all).to include(tz)
+        expect(subject.all.map(&:name)).to include(tz)
       end
     end
 
@@ -25,7 +25,7 @@ describe TZFormater::PosixTZ do
         end
 
         it 'raises with correct message' do
-          expect { posix_tz }.to raise_error('Unknown POSIX timezone')
+          expect { posix_tz }.to raise_error('Unknown posix timezone')
         end
       end
 
@@ -42,27 +42,27 @@ describe TZFormater::PosixTZ do
     subject { posix_tz }
 
     it 'returns olson-like string' do
-      expect(subject.to_olson).to include('Asia/Vladivostok')
+      expect(subject.olson).to include('Asia/Vladivostok')
     end
 
     it 'returns the only olson-like string' do
-      expect(subject.to_olson.size).to eql(1)
+      expect(subject.olson.size).to eql(1)
     end
 
     it 'returns win-like string' do
-      expect(subject.to_win).to include('(UTC+11:00) Vladivostok')
+      expect(subject.win).to include('(UTC+11:00) Vladivostok')
     end
 
     it 'returns the only win-like string' do
-      expect(subject.to_win.size).to eql(1)
+      expect(subject.win.size).to eql(1)
     end
 
     it 'returns win registry string' do
-      expect(subject.to_win_reg).to include('Vladivostok Standard Time')
+      expect(subject.win_reg).to include('Vladivostok Standard Time')
     end
 
     it 'returns the only win registry string' do
-      expect(subject.to_win_reg.size).to eql(1)
+      expect(subject.win_reg.size).to eql(1)
     end
   end
 
@@ -71,27 +71,27 @@ describe TZFormater::PosixTZ do
     subject { posix_tz }
 
     it 'returns olson-like string' do
-      expect(subject.to_olson).to include('Europe/Berlin')
+      expect(subject.olson).to include('Europe/Berlin')
     end
 
     it 'returns many olson-like string' do
-      expect(subject.to_olson.size).to eql(4)
+      expect(subject.olson.size).to eql(4)
     end
 
     it 'returns win-like string' do
-      expect(subject.to_win).to include('(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague')
+      expect(subject.win).to include('(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague')
     end
 
     it 'returns many win-like string' do
-      expect(subject.to_win.size).to eql(4)
+      expect(subject.win.size).to eql(4)
     end
 
     it 'returns win registry string' do
-      expect(subject.to_win_reg).to include('Romance Standard Time')
+      expect(subject.win_reg).to include('Romance Standard Time')
     end
 
     it 'returns many win registry string' do
-      expect(subject.to_win_reg.size).to eql(4)
+      expect(subject.win_reg.size).to eql(4)
     end
   end
 end
