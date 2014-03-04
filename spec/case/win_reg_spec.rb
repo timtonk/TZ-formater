@@ -1,20 +1,20 @@
 require 'spec_helper'
 
-describe TZFormater::PosixTZ do
-  let(:tz)            { 'VLAT-11' } # Vladivostok
+describe TZFormater::WinRegTZ do
+  let(:tz)            { 'Vladivostok Standard Time' } # Vladivostok
   let(:posix_class)   { TZFormater::PosixTZ }
   let(:olson_class)   { TZFormater::OlsonTZ }
   let(:win_class)     { TZFormater::WinTZ }
   let(:win_reg_class) { TZFormater::WinRegTZ }
 
-  let(:posix_tz)      { posix_class.new(tz) }
+  let(:win_reg_tz)      { win_reg_class.new(tz) }
 
   context 'class method' do
-    subject { posix_class }
+    subject { win_reg_class }
 
     context '.all' do
       it 'contains one of timezone' do
-        expect(subject.all.map(&:name)).to include tz
+        expect(subject.all.map(&:name)).to include(tz)
       end
 
       it 'contains instances of the same class' do
@@ -41,27 +41,27 @@ describe TZFormater::PosixTZ do
         let(:tz) { 'random stuff' }
 
         it 'raises an ArgumentError' do
-          expect { posix_tz }.to raise_error ArgumentError
+          expect { win_reg_tz }.to raise_error ArgumentError
         end
 
         it 'raises with correct custom message' do
-          expect { posix_tz }.to raise_error 'Unknown posix timezone'
+          expect { win_reg_tz }.to raise_error 'Unknown win_reg timezone'
         end
       end
 
       context 'with correct tz' do
         it 'creates valid object' do
-          expect(posix_tz).to be_an_instance_of posix_class
+          expect(win_reg_tz).to be_an_instance_of win_reg_class
         end
       end
     end
   end
 
   context 'instance method' do
-    subject(:posixtz_instance) { posix_tz }
+    subject(:winregtz_instance) { win_reg_tz }
 
     context '#name' do
-      subject { posixtz_instance.name }
+      subject { winregtz_instance.name }
 
       it 'returns a string' do
         expect(subject).to be_an_instance_of String
@@ -72,56 +72,44 @@ describe TZFormater::PosixTZ do
       end
     end
 
-    context '#posix' do
-      subject { posixtz_instance.posix }
+    context '#win_reg' do
+      subject { winregtz_instance.win_reg }
 
-      it 'returns a posix instance' do
+      it 'returns a winregtz instance' do
         expect(subject).to be_an_instance_of posix_class
       end
 
-      it 'doesn\'t create new object' do
-        expect(subject).to be posixtz_instance
+      it 'doesn\'t create a new instance' do
+        expect(subject).to be winregtz_instance
+      end
+    end
+
+    context '#posix' do
+      subject { winregtz_instance.posix }
+
+      it 'returns a posixtz instance' do
+        expect(subject).to be_an_instance_of posix_class
       end
     end
 
     context '#olson' do
-      subject { posixtz_instance.olson }
+      subject { winregtz_instance.olson }
 
-      it 'returns a list' do
-        expect(subject).to be_an_instance_of Array
-      end
-
-      it 'contains OlsonTZ objects' do
-        expect(subject.first).to be_an_instance_of olson_class
+      it 'returns an olsontz instance' do
+        expect(subject).to be_an_instance_of win_reg_class
       end
     end
 
     context '#win' do
-      subject { posixtz_instance.win }
+      subject { winregtz_instance.win }
 
-      it 'returns a list' do
-        expect(subject).to be_an_instance_of Array
-      end
-
-      it 'contains WinTZ objects' do
-        expect(subject.first).to be_an_instance_of win_class
-      end
-    end
-
-    context '#win_reg' do
-      subject { posixtz_instance.win_reg }
-
-      it 'returns a list' do
-        expect(subject).to be_an_instance_of Array
-      end
-
-      it 'contains WinRegTZ objects' do
-        expect(subject.first).to be_an_instance_of win_reg_class
+      it 'returns a wintz instance' do
+        expect(subject).to be_an_instance_of win_reg_class
       end
     end
 
     context '#offset' do
-      subject { posixtz_instance.offset }
+      subject { winregtz_instance.offset }
 
       it 'returns an integer' do
         expect(subject).to be_a_kind_of Integer

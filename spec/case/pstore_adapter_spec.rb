@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe TZFormater::PstoreAdapter, depends: :PstoreHelper do
-  let(:pstore_adapter) { TZFormater::PstoreAdapter.new(filename) }
+describe TZFormater::Common::PstoreAdapter, depends: :PstoreHelper do
+  let(:pstore_adapter) { TZFormater::Common::PstoreAdapter.new(filename) }
   after(:all) { delete_test_file }
 
   context 'when incorrect file provided' do
@@ -50,7 +50,7 @@ describe TZFormater::PstoreAdapter, depends: :PstoreHelper do
       context 'with non-existed type' do
         let!(:type) { :gavno }
 
-        context 'and existed key' do # actualy it makes no sense, because any key is not existed in nonexisted type
+        context 'and existed key' do # actualy it makes no sense because any key doesn't exist in nonexisted type
           it 'returns nil' do
             expect(subject).to be_nil
           end
