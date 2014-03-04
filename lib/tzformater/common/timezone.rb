@@ -22,20 +22,12 @@ module TZFormater
 
       def olson
         return self if @key == :olson
-        if @info[:olson].kind_of? Array
-          @info[:olson].map{|tz| TZFormater::OlsonTZ.new(tz) }
-        else
-          TZFormater::OlsonTZ.new(@info[:olson])
-        end
+        process_tzs(@info[:olson]) {|tz| TZFormater::OlsonTZ.new(tz) }
       end
 
       def win
         return self if @key == :win
-        if @info[:win].kind_of? Array
-          @info[:win].map{|tz| TZFormater::WinTZ.new(tz)}
-        else
-          TZFormater::WinTZ.new(@info[:win])
-        end
+        process_tzs(@info[:win]) {|tz| TZFormater::WinTZ.new(tz) }
       end
 
       def win_reg
@@ -46,6 +38,15 @@ module TZFormater
       def offset
         @info[:offset]
       end
+
+      private
+        def process_tzs(tz_list)
+          if tz_list.kind_of? Array
+            tz_list.map{|tz| yield(tz) }
+          else
+            yield(tz_list)
+          end
+        end
     end
   end
 end
