@@ -33,7 +33,7 @@ describe TZFormater::WinRegTZ do
         end
 
         it 'raises with correct standard message' do
-          expect { subject.new }.to raise_error 'wrong number of arguments (0 for 1..2)'
+          expect { subject.new }.to raise_error(/wrong number of arguments/)
         end
       end
 
