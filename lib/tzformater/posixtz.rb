@@ -1,5 +1,10 @@
 module TZFormater
-  class PosixTZ < TZFormater::Timezone
-    @@key = :posix
+  class PosixTZ < TZFormater::Common::Timezone
+    @key = :posix
+
+    def initialize(*args)
+      @key = :posix
+      super
+    end
   end
 end
