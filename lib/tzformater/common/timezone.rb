@@ -3,6 +3,13 @@ module TZFormater
     class Timezone
       attr_reader :name
 
+      methods = {
+        posix:    :PosixTZ,
+        olson:    :OlsonTZ,
+        win:      :WinTZ,
+        win_reg:  :WinRegTZ
+      }
+
       @@storage = TZFormater::Common::PstoreAdapter.new(TZFormater::FILENAME)
 
       def self.all
@@ -15,24 +22,11 @@ module TZFormater
         raise ArgumentError.new("Unknown #{@key} timezone") if @info.nil?
       end
 
-      def posix
-        return self if @key == :posix
-        TZFormater::PosixTZ.new(@info[:posix])
-      end
-
-      def olson
-        return self if @key == :olson
-        process_tzs(@info[:olson]) {|tz| TZFormater::OlsonTZ.new(tz) }
-      end
-
-      def win
-        return self if @key == :win
-        process_tzs(@info[:win]) {|tz| TZFormater::WinTZ.new(tz) }
-      end
-
-      def win_reg
-        return self if @key == :win_reg
-        @info[:win_reg].map{|tz| TZFormater::WinRegTZ.new(tz)}
+      methods.each do |name, klass|
+        define_method(name) do
+          return self if @key == name
+          process_tzs(@info[name]) {|tz| TZFormater.const_get(klass).new(tz) }
+        end
       end
 
       def offset
