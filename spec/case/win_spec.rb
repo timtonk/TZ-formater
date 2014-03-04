@@ -33,7 +33,7 @@ describe TZFormater::WinTZ do
         end
 
         it 'raises with correct standard message' do
-          expect { subject.new }.to raise_error 'wrong number of arguments (0 for 1)'
+          expect { subject.new }.to raise_error 'wrong number of arguments (0 for 1..2)'
         end
       end
 
@@ -96,7 +96,7 @@ describe TZFormater::WinTZ do
       subject { wintz_instance.olson }
 
       it 'returns an olsontz instance' do
-        expect(subject).to be_an_instance_of win_class
+        expect(subject).to be_an_instance_of olson_class
       end
     end
 

@@ -19,8 +19,8 @@ describe TZFormater::Common::PstoreAdapter, depends: :PstoreHelper do
   context 'when correct file provided' do
     let!(:filename) { generate_test_file }
 
-    context '#get_all' do
-      subject { pstore_adapter.get_all(type) }
+    context '#get_all_keys' do
+      subject { pstore_adapter.get_all_keys(type) }
 
       context 'with existed type' do
         let!(:type) { :posix }
@@ -39,6 +39,30 @@ describe TZFormater::Common::PstoreAdapter, depends: :PstoreHelper do
 
         it 'returns an Array object' do
           expect(subject).to be_an_instance_of(Array)
+        end
+      end
+    end
+
+    context '#get_all' do
+      subject { pstore_adapter.get_all(type) }
+
+      context 'with existed type' do
+        let!(:type) { :posix }
+
+        it 'returns a complete value of such root' do
+          expect(subject).to eql({"VLAT-11" => "test_string", "CET-1CEST,M3.5.0,M10.5.0/3" => "test_string2"}) # TODO: get assertion from stub_file
+        end
+      end
+
+      context 'with non-existed type' do
+        let!(:type) { :gavno }
+
+        it 'returns empty object' do
+          expect(subject.size).to eql(0)
+        end
+
+        it 'returns a Hash object' do
+          expect(subject).to be_an_instance_of(Hash)
         end
       end
     end

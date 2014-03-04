@@ -33,7 +33,7 @@ describe TZFormater::WinRegTZ do
         end
 
         it 'raises with correct standard message' do
-          expect { subject.new }.to raise_error 'wrong number of arguments (0 for 1)'
+          expect { subject.new }.to raise_error 'wrong number of arguments (0 for 1..2)'
         end
       end
 
@@ -76,7 +76,7 @@ describe TZFormater::WinRegTZ do
       subject { winregtz_instance.win_reg }
 
       it 'returns a winregtz instance' do
-        expect(subject).to be_an_instance_of posix_class
+        expect(subject).to be_an_instance_of win_reg_class
       end
 
       it 'doesn\'t create a new instance' do
@@ -96,7 +96,7 @@ describe TZFormater::WinRegTZ do
       subject { winregtz_instance.olson }
 
       it 'returns an olsontz instance' do
-        expect(subject).to be_an_instance_of win_reg_class
+        expect(subject).to be_an_instance_of olson_class
       end
     end
 
@@ -104,7 +104,7 @@ describe TZFormater::WinRegTZ do
       subject { winregtz_instance.win }
 
       it 'returns a wintz instance' do
-        expect(subject).to be_an_instance_of win_reg_class
+        expect(subject).to be_an_instance_of win_class
       end
     end
 

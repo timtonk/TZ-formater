@@ -33,7 +33,7 @@ describe TZFormater::OlsonTZ do
         end
 
         it 'raises with correct standard message' do
-          expect { subject.new }.to raise_error 'wrong number of arguments (0 for 1)'
+          expect { subject.new }.to raise_error 'wrong number of arguments (0 for 1..2)'
         end
       end
 
