@@ -11,21 +11,20 @@ module TZFormater
       end
 
       def get_by(type, timezone)
-        get_type(type).fetch(timezone, nil)
+        get_all(type).fetch(timezone, nil)
+      end
+
+      def get_all_keys(type)
+        get_all(type).keys
       end
 
       def get_all(type)
-        get_type(type).keys
-      end
-
-      private
-        def get_type(type)
-          list = {}
-          @file.transaction(READ_ONLY) do
-            list = @file.fetch(type, {})
-          end
-          list
+        list = {}
+        @file.transaction(READ_ONLY) do
+          list = @file.fetch(type, {})
         end
+        list
+      end
     end
   end
 end
