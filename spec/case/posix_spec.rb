@@ -72,8 +72,8 @@ describe TZFormater::PosixTZ do
       end
     end
 
-    context '#posix' do
-      subject { posixtz_instance.posix }
+    context '#to_posix' do
+      subject { posixtz_instance.to_posix }
 
       it 'returns a posix instance' do
         expect(subject).to be_an_instance_of posix_class
@@ -84,8 +84,8 @@ describe TZFormater::PosixTZ do
       end
     end
 
-    context '#olson' do
-      subject { posixtz_instance.olson }
+    context '#to_olson' do
+      subject { posixtz_instance.to_olson }
 
       it 'returns a list' do
         expect(subject).to be_an_instance_of Array
@@ -96,8 +96,8 @@ describe TZFormater::PosixTZ do
       end
     end
 
-    context '#win' do
-      subject { posixtz_instance.win }
+    context '#to_win' do
+      subject { posixtz_instance.to_win }
 
       it 'returns a list' do
         expect(subject).to be_an_instance_of Array
@@ -108,8 +108,8 @@ describe TZFormater::PosixTZ do
       end
     end
 
-    context '#win_reg' do
-      subject { posixtz_instance.win_reg }
+    context '#to_win_reg' do
+      subject { posixtz_instance.to_win_reg }
 
       it 'returns a list' do
         expect(subject).to be_an_instance_of Array

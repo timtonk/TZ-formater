@@ -72,8 +72,8 @@ describe TZFormater::WinTZ do
       end
     end
 
-    context '#win' do
-      subject { wintz_instance.win }
+    context '#to_win' do
+      subject { wintz_instance.to_win }
 
       it 'returns a wintz instance' do
         expect(subject).to be_an_instance_of win_class
@@ -84,24 +84,24 @@ describe TZFormater::WinTZ do
       end
     end
 
-    context '#posix' do
-      subject { wintz_instance.posix }
+    context '#to_posix' do
+      subject { wintz_instance.to_posix }
 
       it 'returns a posixtz instance' do
         expect(subject).to be_an_instance_of posix_class
       end
     end
 
-    context '#olson' do
-      subject { wintz_instance.olson }
+    context '#to_olson' do
+      subject { wintz_instance.to_olson }
 
       it 'returns an olsontz instance' do
         expect(subject).to be_an_instance_of olson_class
       end
     end
 
-    context '#win_reg' do
-      subject { wintz_instance.win_reg }
+    context '#to_win_reg' do
+      subject { wintz_instance.to_win_reg }
 
       it 'returns a list' do
         expect(subject).to be_an_instance_of Array
