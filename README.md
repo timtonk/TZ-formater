@@ -22,6 +22,11 @@ Drawing on the example of the Alaskan timezone:
 * Win   - (UTC-09:00) Alaska
 * Windows registry - Alaskan Standard Time
 
+## Requirements
+
+This gem uses only built-in tools.
+Gem is fully tested with MRI 1.9.2, 1.9.3, 2.0, 2.1 and jruby in 1.9 mode
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -40,7 +45,7 @@ Or install it yourself as:
 
 Get all timezones in current format:
 
-    TZFormater::PosixTZ.get_all
+    TZFormater::PosixTZ.all
 
 Create timezone with specific format:
 
@@ -72,11 +77,11 @@ Get name of converted timezone:
 
 Get string represantation of all timezones:
 
-    TZFormater::PosixTZ.get_all.map(&:name) # => Very long array with posix timezones
+    TZFormater::PosixTZ.all.map(&:name) # => Very long array with posix timezones
 
 Get list of timezones sorted by utc offset:
 
-    TZFormater::WinTZ.get_all.sort_by(&:offset)
+    TZFormater::WinTZ.all.sort_by(&:offset)
 
 ## Contributing
 
