@@ -23,7 +23,7 @@ module TZFormater
       end
 
       methods.each do |name, klass|
-        define_method(name) do
+        define_method("to_#{name}") do
           return self if @key == name
           process_tzs(@info[name]) {|tz| TZFormater.const_get(klass).new(tz) }
         end

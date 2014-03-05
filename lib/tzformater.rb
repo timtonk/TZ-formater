@@ -8,4 +8,3 @@ require 'tzformater/posixtz'
 require 'tzformater/wintz'
 require 'tzformater/olsontz'
 require 'tzformater/winregtz'
-
