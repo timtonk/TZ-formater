@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = TZFormater::VERSION
   spec.authors       = ["Dmitry Tonkonogov"]
   spec.email         = ["omun.spambox@gmail.com"]
-  spec.summary       = %q{Library for converting timezone to different formats (POSIX, Olson, windows-like, windows-registry)}
-  spec.description   = %q{Just first gem.}
-  spec.homepage      = ""
+  spec.summary       = %q{Ruby timezone convefrting library}
+  spec.description   = %q{Ruby gem for converting timezone to different formats (POSIX, Olson, windows-like, windows-registry)}
+  spec.homepage      = "https://github.com/tonkonogov/TZ-formater"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
